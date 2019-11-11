@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import User from "./User";
+import { Provider } from "./Context";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    name: "Vikas",
+    value: 10
+  };
+
+  handleClickContext = () => {
+    this.setState({
+      value: this.state.value + 1
+    });
+  };
+  render() {
+    const textConst = {
+      textAlign: "center"
+    };
+    const stateValue = {
+      data: this.state,
+      handleClick: this.handleClickContext
+    };
+    return (
+      <div style={textConst}>
+        <Provider value={stateValue}>
+          <User />
+        </Provider>
+      </div>
+    );
+  }
 }
 
 export default App;
